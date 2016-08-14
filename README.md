@@ -2,6 +2,7 @@
 masterless puppet to build swiftstack controller
 
 running with puppet apply will make a swiftstack controller
+```puppet apply /etc/puppet/manifests/site.pp```
 
 after complete, the randomly generated localadmin password is in /tmp/swiftstack/localadmin-pw
 
