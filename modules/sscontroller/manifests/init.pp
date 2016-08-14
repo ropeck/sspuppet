@@ -9,6 +9,10 @@ class sscontroller {
     require => Package['rng-tools'],
   }
 
+  file {'/opt/ss/etc/ssman.conf.sh':
+    source => 'puppet:///modules/sscontroller/ssman.conf.sh',
+  }
+
   exec {'swiftstack-files':
     creates => '/tmp/swiftstack',
     command => 'mkdir /tmp/swiftstack; cd /tmp/swiftstack;
@@ -17,6 +21,7 @@ class sscontroller {
 	done;
 	chmod +x *sh',
     path => ['/bin', '/usr/bin'],
+    require => [File['/opt/ss/etc/ssman.conf.sh'],User['swiftstack']],
   }
 
 
@@ -29,6 +34,7 @@ class sscontroller {
     managehome => true,
     uid => 1001,
     groups => 'swiftstack',
+    require => Group['swiftstack'],
   }
 }
 
