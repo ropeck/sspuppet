@@ -21,7 +21,7 @@ class sscontroller {
 	done;
 	chmod +x *sh',
     path => ['/bin', '/usr/bin'],
-    require => [File['/opt/ss/etc/ssman.conf.sh'],User['swiftstack']],
+    require => [File['/opt/ss/etc/ssman.conf.sh'],User['swiftstack'],Exec['rng-setup']],
   }
 
 
@@ -35,6 +35,25 @@ class sscontroller {
     uid => 1001,
     groups => 'swiftstack',
     require => Group['swiftstack'],
+  }
+
+  file {'/tmp/swiftstack/configinput':
+    source => 'puppet:///modules/sscontroller/configinput',
+    require => Exec['swiftstack-files'],
+  }
+
+  exec { 'setup-sscontroller':
+    command => 'bash /tmp/swiftstack/setup-swiftstack-2.24.0.2_ebay_2014-06-28.sh --skip filesystem 2>&1 >> /tmp/swiftstack/install-output',
+    timeout => 0,
+    path => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+    require => [Exec['swiftstack-files'], File['/tmp/swiftstack/configinput']],
+  }
+
+  exec {'reset-localadmin-password':
+    require => Exec['setup-sscontroller'],
+    creates => '/tmp/swiftstack/localadmin-pw',
+    path => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+    command => 'sg swiftstack "/deploy/ssman/current/ssman/manage.py user localadmin --traceback --generate-password" > /tmp/swiftstack/localadmin-pw',
   }
 }
 
