@@ -31,4 +31,12 @@ or generate a new one with this command:
 sg swiftstack "/deploy/ssman/current/ssman/manage.py user localadmin --traceback --generate-password" > /tmp/swiftstack/localadmin-pw
 ```
 
+6. log into the new controller using a web browser by loading the vm's hostname.
+```
+http://ss-build-6189.ccg21.dev.paypalcorp.com
+```
+which will redirect to the ssl login page:
+```
+https://ss-build-6189.ccg21.dev.paypalcorp.com/accounts/login/
+```
 
