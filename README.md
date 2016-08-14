@@ -24,9 +24,7 @@ deb http://01.archive.ubuntu.com/ubuntu/ trusty-security main universe
 puppet apply /etc/puppet/manifests/site.pp
 ```
 
-after complete, the randomly generated localadmin password is in `/tmp/swiftstack/localadmin-pw`
-
-or generate a new one with this command:
+6. after complete, the randomly generated localadmin password is in `/tmp/swiftstack/localadmin-pw` or generate a new one with this command:
 ```
 sg swiftstack "/deploy/ssman/current/ssman/manage.py user localadmin --traceback --generate-password" > /tmp/swiftstack/localadmin-pw
 ```
