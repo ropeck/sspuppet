@@ -9,8 +9,12 @@ class sscontroller {
     require => Package['rng-tools'],
   }
 
+  file {['/opt/ss', '/opt/ss/etc']:
+    ensure => 'directory',
+  }
   file {'/opt/ss/etc/ssman.conf.sh':
     source => 'puppet:///modules/sscontroller/ssman.conf.sh',
+    require => File['/opt/ss/etc'],
   }
 
   exec {'swiftstack-files':

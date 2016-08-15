@@ -56,3 +56,6 @@ which will redirect to the ssl login page:
 https://ss-build-6189.ccg21.dev.paypalcorp.com/accounts/login/
 ```
 
+## Watching The Build
+While the puppet run goes it will write logs to `/var/log` and `/tmp/swiftstack/install-output`.
+
