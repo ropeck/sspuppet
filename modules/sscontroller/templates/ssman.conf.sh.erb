@@ -10,7 +10,7 @@ CONTROLLER_ORGANIZATION="PayPal"
 # This should be the fully-qualified domain name of the controller (or
 # cluster's main node, if clustered).  It should have a DNS entry and match the
 # SSL certificate: /opt/ss/etc/ssman.crt
-PRIMARY_CONTROLLER_HOSTNAME="<% $::fqdn %>"
+PRIMARY_CONTROLLER_HOSTNAME="<%= @fqdn %>"
 
 # Username for the privileged SwiftStack role account on the Controller host.
 # *** This account will have sudo privileges. ***
