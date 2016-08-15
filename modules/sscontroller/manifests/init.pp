@@ -51,6 +51,7 @@ class sscontroller {
     timeout => 0,
     path => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
     require => [Exec['swiftstack-files'], File['/tmp/swiftstack/configinput']],
+    creates => '/tmp/swiftstack/install-output',
   }
 
   exec {'reset-localadmin-password':
