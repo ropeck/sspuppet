@@ -13,7 +13,7 @@ class sscontroller {
     ensure => 'directory',
   }
   file {'/opt/ss/etc/ssman.conf.sh':
-    source => 'puppet:///modules/sscontroller/ssman.conf.sh',
+    content => template('sscontroller/ssman.conf.sh.erb'),
     require => File['/opt/ss/etc'],
   }
 
